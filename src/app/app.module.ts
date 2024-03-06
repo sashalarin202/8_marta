@@ -13,6 +13,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { KeywordComponent } from './components/keyword/keyword.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     AppComponent,
     WelcomeMessageComponent,
     QuizComponent,
+    KeywordComponent,
   ],
   imports: [
     BrowserModule,
