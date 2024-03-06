@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { createMask } from '@ngneat/input-mask';
+import { InputmaskOptions, createMask } from '@ngneat/input-mask';
 
 @Component({
   selector: 'app-quiz',
@@ -8,6 +8,11 @@ import { createMask } from '@ngneat/input-mask';
   styleUrl: './quiz.component.scss'
 })
 export class QuizComponent {
+
+  @Input() formControl!: FormControl;
+  @Input() inputMask!: InputmaskOptions<any>;
+  @Input() maskPlaceholder: string | undefined;
+
   value = '';
   codemask1 = createMask<void>({
     mask: "* * * *",
@@ -35,4 +40,11 @@ export class QuizComponent {
       }}
   });
   codeForm3 = new FormControl('');
+
+  toUpper(control:FormControl) {
+    const value = control.value;
+    if (value) { // Добавляем проверку на наличие значения, чтобы избежать ошибок
+      control.setValue(value.toUpperCase(), {emitEvent: false});
+    }
+  }
 }
