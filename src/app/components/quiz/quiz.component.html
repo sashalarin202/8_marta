@@ -1,51 +1,76 @@
 <mat-tab-group>
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-form-field class="example-form-field">
-        <mat-label>1 слово</mat-label>
-        <input matInput type="text" [(ngModel)]="value">
-      </mat-form-field>
-    </ng-template>
-    <p class="question">То не вещество, не цвет, не звук,
-      Но оно притягивает взгляд.
-      В нём магия простых слов и взгляда огня,
-      Он в сердце живёт, не купишь за деньги его.
-      Что это такое, скажи-ка, дружок,
-      Что делает мир ярче в любой его уголок?</p>
+  <mat-tab label="Загадка 1">
+    <div class="example-large-box mat-elevation-z4">
+      <p class="question">В нём тайна, что манит взгляды,<br>
+        Искрится в улыбке сладострасть.<br>
+        Не скажешь, что вещь, не поймаешь в ладони,<br>
+        Но сердце к себе манит на раз.<br>
+        <br>
+        В его присутствии сердца стучат чаще,<br>
+        Он – ключ к душам, невидим и влекущ.<br>
+        Как назовешь ты то, что без касаний касается,<br>
+        Оставляя в душе светлый след и теплый лучь?<br>
+      </p>
+      <app-keyword
+        [formControl]="codeForm1"
+        [inputMask]="codemask1"
+        maskPlaceholder="_ _ _ _"
+        class="app-keyword"
+    ></app-keyword>
+    <h1></h1>
+    </div>
+
   </mat-tab>
 
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-form-field class="example-form-field">
-        <mat-label>2 слово</mat-label>
-        <input matInput type="text" [(ngModel)]="value">
+  <mat-tab label="Загадка 2"> 
+    <div class="example-large-box mat-elevation-z4">
+      <p class="question">В бокале пенится секрет,<br>
+        Из солода рожденный свет.<br>
+        Не вино и не пивко,<br>
+        Загадай, что в руке твоё?<br>
+        <br>
+        Любит он путешествия издалека,<br>
+        Хмель его душа, а вкус – от мечта.<br>
+        Северной страны дарит он вкус,<br>
+        Найди ответ, отгадай же ты вдруг.<br>
+      </p>
+        <app-keyword
+          [formControl]="codeForm2"
+          [inputMask]="codemask2"
+          maskPlaceholder="_ _ _"
+          class="app-keyword"
+      ></app-keyword>
+      <h1></h1>
+    </div>
 
-      </mat-form-field>
-    </ng-template>
-    <p class="question">Не вино, не водка, не сидр, не ром,
-      В бокале пенится, но не домашний ком.
-      Из ячменя рождается, в пивоварне взрастает,
-      С хмелем он дружит, жажду утоляет.
-      Старинный напиток, что пьют под закусь,
-      Его любят вечером, в холоде и в жару.
-      Что это за напиток, скажи на раз-два,
-      Что имя носит короткое, да?</p>
   </mat-tab>
--
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-form-field class="example-form-field">
-        <mat-label>3 слово</mat-label>
-        <input matInput type="text" [(ngModel)]="value">
-      </mat-form-field>
-    </ng-template>
-    <p class="question">Он не король, но власть имеет в руках,
-      Не маг, но чудеса творит под звёздных ночей.
-      В пустыне его дом, оазис его сад,
-      Его слово — закон для его народа.
-      Богат, но не жаден, мудр — не учёный,
-      В его руках мечта пустынных сонетов.
-      Кто он? Вопрос несложный, дай ответ:
-      Восточный владыка, но не султан и не царь.</p>
+
+  <mat-tab label="Загадка 3"> 
+    <div class="example-large-box mat-elevation-z4">
+      <p class="question">
+        В пустыне живет король, не простой,<br>
+        В его владениях песок золотой.<br>
+        Он ведет за собой верблюдов караван,<br>
+        В его шатрах найдешь и воду, и хлеб, и уран.<br>
+        <br>
+        Его богатство не счесть, не измерить,<br>
+        И все желают с ним дружбу заверить.<br>
+        На голове турбан, в руке – скипетр мира,<br>
+        Он мудр и справедлив, не знает гнева, лишь мира.<br>
+        <br>
+        Кто он? Подумай, не спеши,<br>
+        Ведь ответ скрыт в пустынной дали.<br>
+      </p>
+        <app-keyword
+          [formControl]="codeForm3"
+          [inputMask]="codemask3"
+          maskPlaceholder="_ _ _ _"
+          class="app-keyword"
+      ></app-keyword>
+      <h1></h1>
+    </div>
   </mat-tab>
 </mat-tab-group>
+
+
+
