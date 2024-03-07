@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { InputmaskOptions, createMask } from '@ngneat/input-mask';
+import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
+import { InputmaskOptions } from '@ngneat/input-mask';
 
 @Component({
   selector: 'app-quiz',
@@ -11,40 +11,38 @@ export class QuizComponent {
 
   @Input() formControl!: FormControl;
   @Input() inputMask!: InputmaskOptions<any>;
-  @Input() maskPlaceholder: string | undefined;
 
   value = '';
-  codemask1 = createMask<void>({
-    mask: "* * * *",
-    definitions:{
-      '*': {
-        validator: "[А-Яа-я]",
-      }}
-  });
-  codeForm1 = new FormControl('');
 
-  codemask2 = createMask<void>({
-    mask: "* * *",
-    definitions:{
-      '*': {
-        validator: "[А-Яа-я]",
-      }}
-  });
-  codeForm2 = new FormControl('');
+  codeForm1: FormControl;
+  codeForm2: FormControl;
+  codeForm3: FormControl;
+
+  constructor(){
+    this.codeForm1 = new FormControl('', [this.russianLettersValidator()]);
+    this.codeForm2 = new FormControl('', [this.russianLettersValidator()]);
+    this.codeForm3 = new FormControl('', [this.russianLettersValidator()]);
+  }
+
+  limitInput(event: Event, limit: number) {
+    const target = event.target as HTMLInputElement | null;
+    if (target) {
+      const value = target.value;
   
-  codemask3 = createMask<void>({
-    mask: "* * * *",
-    definitions:{
-      '*': {
-        validator: "[А-Яа-я]",
-      }}
-  });
-  codeForm3 = new FormControl('');
-
-  toUpper(control:FormControl) {
-    const value = control.value;
-    if (value) { // Добавляем проверку на наличие значения, чтобы избежать ошибок
-      control.setValue(value.toUpperCase(), {emitEvent: false});
+      // Оставляем только русские буквы и ограничиваем длину до 3 символов
+      const limitedValue = value.replace(/[^а-яА-ЯёЁ]/g, '').substring(0, limit);
+  
+      // Обновляем значение поля с ограниченными данными
+      target.value = limitedValue.toUpperCase(); // Если вам нужны только заглавные буквы
     }
   }
+
+
+  russianLettersValidator = (): ValidatorFn => {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const value = control.value;
+      const isValid = /^[а-яА-ЯёЁ]{0,4}$/.test(value);
+      return isValid ? null : { 'invalidRussianLetters': { value: value } };
+    };
+  };
 }
