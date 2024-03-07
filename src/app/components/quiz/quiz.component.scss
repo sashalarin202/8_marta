@@ -10,7 +10,7 @@ mat-tab-group{
 
 .question{
     font-size: 17px;
-    margin-bottom: 60px;
+    padding-bottom: 60px;
     text-align: center;
 }
 
@@ -24,6 +24,8 @@ mat-form-field{
 
 input {
     text-align: center;
+    width: 100px;
+    padding-left: 30px;
 }
 
 .fixed-bottom {
@@ -39,4 +41,16 @@ input {
 
 .correct-answer-tab .mat-tab-body-content {
     color: #c8e6c9 !important;
+}
+
+.icon{
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 10px;
+}
+
+.example-full-width{
+    display: flex;
+    width: 200px;
 }

@@ -16,8 +16,10 @@
             matInput
             [formControl]="codeForm1"
             placeholder="_ _ _ _"
-            (input)="limitInput($event, 4); checkAnswer(0, $event)"
+            (input)="limitInput($event, 4)"
+            (input)="checkAnswer(0, $event)"
             />
+          <mat-icon *ngIf="isAnswerCorrect[0]" class="icon" svgIcon="done"></mat-icon>  
       </mat-form-field>
     <h1></h1>
     </div>
@@ -43,6 +45,7 @@
             placeholder="_ _ _"
             (input)="limitInput($event, 3); checkAnswer(1, $event)"
             />
+            <mat-icon *ngIf="isAnswerCorrect[1]" class="icon" svgIcon="done"></mat-icon>  
       </mat-form-field>
       <h1></h1>
     </div>
@@ -67,11 +70,13 @@
       </p>
       <mat-form-field class="example-full-width">
         <input
+            class="input-field"
             matInput
             [formControl]="codeForm3"
             placeholder="_ _ _ _"
             (input)="limitInput($event, 4); checkAnswer(2, $event)"
             />
+            <mat-icon *ngIf="isAnswerCorrect[2]" class="icon" svgIcon="done"></mat-icon>  
       </mat-form-field>
       <h1></h1>
     </div>
