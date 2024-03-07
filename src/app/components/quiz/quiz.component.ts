@@ -1,22 +1,21 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
-import { InputmaskOptions } from '@ngneat/input-mask';
 
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
-  styleUrl: './quiz.component.scss'
+  styleUrls: ['./quiz.component.scss']
 })
 export class QuizComponent {
 
   @Input() formControl!: FormControl;
-  @Input() inputMask!: InputmaskOptions<any>;
-
-  value = '';
 
   codeForm1: FormControl;
   codeForm2: FormControl;
   codeForm3: FormControl;
+
+  correctAnswers = ['ШАРМ', 'ЭЛЬ', 'ШЕЙХ']; 
+  isAnswerCorrect = [false, false, false]; 
 
   constructor(){
     this.codeForm1 = new FormControl('', [this.russianLettersValidator()]);
@@ -29,14 +28,20 @@ export class QuizComponent {
     if (target) {
       const value = target.value;
   
-      // Оставляем только русские буквы и ограничиваем длину до 3 символов
       const limitedValue = value.replace(/[^а-яА-ЯёЁ]/g, '').substring(0, limit);
   
-      // Обновляем значение поля с ограниченными данными
-      target.value = limitedValue.toUpperCase(); // Если вам нужны только заглавные буквы
+      target.value = limitedValue.toUpperCase();
     }
   }
 
+  checkAnswer(index: number, event: any) {
+    console.log('checkAnswer called with index:', index);
+    const answer = event.target.value.toUpperCase(); 
+    console.log('Answer:', answer);
+    console.log('Correct Answer:', this.correctAnswers[index]);
+    this.isAnswerCorrect[index] = answer === this.correctAnswers[index];
+    console.log('isAnswerCorrect:', this.isAnswerCorrect);
+  }
 
   russianLettersValidator = (): ValidatorFn => {
     return (control: AbstractControl): { [key: string]: any } | null => {
@@ -45,4 +50,7 @@ export class QuizComponent {
       return isValid ? null : { 'invalidRussianLetters': { value: value } };
     };
   };
+  openGoogleMaps(){
+    window.open('https://maps.app.goo.gl/dSRfYbFMDSuziK1HA?g_st=ic', '_blank');
+  }
 }

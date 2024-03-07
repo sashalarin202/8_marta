@@ -1,5 +1,5 @@
 <mat-tab-group>
-  <mat-tab label="Загадка 1">
+  <mat-tab label="Загадка 1" [ngClass]="{'correct-answer-tab': isAnswerCorrect[0]}">
     <div class="example-large-box mat-elevation-z4">
       <p class="question">В нём тайна, что манит взгляды,<br>
         Искрится в улыбке сладострасть.<br>
@@ -16,7 +16,7 @@
             matInput
             [formControl]="codeForm1"
             placeholder="_ _ _ _"
-            (input)="limitInput($event, 4)"
+            (input)="limitInput($event, 4); checkAnswer(0, $event)"
             />
       </mat-form-field>
     <h1></h1>
@@ -24,7 +24,7 @@
 
   </mat-tab>
 
-  <mat-tab label="Загадка 2"> 
+  <mat-tab label="Загадка 2" [ngClass]="{'correct-answer-tab': isAnswerCorrect[1]}"> 
     <div class="example-large-box mat-elevation-z4">
       <p class="question">В бокале пенится секрет,<br>
         Из солода рожденный свет.<br>
@@ -41,7 +41,7 @@
             matInput
             [formControl]="codeForm2"
             placeholder="_ _ _"
-            (input)="limitInput($event, 3)"
+            (input)="limitInput($event, 3); checkAnswer(1, $event)"
             />
       </mat-form-field>
       <h1></h1>
@@ -49,7 +49,7 @@
 
   </mat-tab>
 
-  <mat-tab label="Загадка 3"> 
+  <mat-tab label="Загадка 3" [ngClass]="{'correct-answer-tab': isAnswerCorrect[2]}"> 
     <div class="example-large-box mat-elevation-z4">
       <p class="question">
         В пустыне живет король, не простой,<br>
@@ -70,7 +70,7 @@
             matInput
             [formControl]="codeForm3"
             placeholder="_ _ _ _"
-            (input)="limitInput($event, 4)"
+            (input)="limitInput($event, 4); checkAnswer(2, $event)"
             />
       </mat-form-field>
       <h1></h1>
@@ -78,5 +78,18 @@
   </mat-tab>
 </mat-tab-group>
 
-
+<h2 class="fixed-bottom">
+  @if (isAnswerCorrect[0]) {
+    ШАРМ -
+  }
+  @if (isAnswerCorrect[1]) {
+    ЭЛЬ - 
+  }
+  @if (isAnswerCorrect[2]) {
+    ШЕЙХ  
+  }
+  <button mat-fab @if [disabled]="!(isAnswerCorrect[0] && isAnswerCorrect[1] && isAnswerCorrect[2])" (click)="openGoogleMaps()"  aria-label="Example icon button with a heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+</h2>
 

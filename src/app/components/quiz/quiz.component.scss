@@ -23,4 +23,19 @@ mat-form-field{
 
 input {
     text-align: center;
-  }
+}
+
+.fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center; 
+    z-index: 9999;
+}
+
+.correct-answer-tab .mat-tab-body-content {
+    color: #c8e6c9 !important;
+}
